@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naked Crab Club ($CRAB) - The Original Furie Meme Coin</title>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -248,6 +252,7 @@
             margin-bottom: 50px;
         }
 
+/* Fixed Video Controls */
         .video-container {
             position: relative;
             width: 100%;
@@ -266,12 +271,41 @@
             object-fit: cover;
         }
 
+        .video-controls {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 5;
+        }
+
+        .video-btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            font-size: 1.2rem;
+        }
+
+        .video-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             .video-container {
                 height: 250px;
             }
         }
-
         /* Sections */
         .section {
             padding: 100px 20px;
@@ -810,11 +844,16 @@
             <h2>$CRAB</h2>
             <p>Lore video</p>
             
-            <div class="video-container">
+     <div class="video-container">
                 <video id="heroVideo" muted loop playsinline>
                     <source src="https://raw.githubusercontent.com/peace-dapps/CRABPNG/main/InShot_20251105_131332036.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div class="video-controls">
+                    <button id="pauseBtn" class="video-btn">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -1102,9 +1141,8 @@
             <p>© 2025 Naked Crab Club. All Rights Reserved. Built on Solana.</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile Navigation
+<script>
+// ====== MOBILE NAVIGATION ======
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileNav = document.getElementById('mobileNav');
         const closeMenuBtn = document.querySelector('.close-menu');
@@ -1127,7 +1165,7 @@
             link.addEventListener('click', closeMobileNav);
         });
 
-        // Scroll animation for sections
+        // ====== SCROLL ANIMATION ======
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1140,10 +1178,11 @@
             observer.observe(section);
         });
 
-        // Video and Popup functionality - FIXED VERSION
+        // ====== VIDEO + POPUP FUNCTIONALITY ======
         const video = document.getElementById("heroVideo");
         const popupOverlay = document.getElementById("popupOverlay");
         const diveInBtn = document.getElementById("diveInBtn");
+        const pauseBtn = document.getElementById("pauseBtn");
 
         // Show popup when page loads
         window.addEventListener('load', () => {
@@ -1155,46 +1194,64 @@
                     sessionStorage.setItem('hasSeenPopup', 'true');
                 }, 1000);
             } else {
-                // If they've seen it before, auto-play video muted
+                // Auto-play muted if user already saw popup
                 video.muted = true;
-                video.play().catch(error => {
-                    console.log('Auto-play failed:', error);
-                });
+                video.play().catch(err => console.log('Auto-play failed:', err));
             }
         });
 
         // INSTANT response when clicking Dive In
         diveInBtn.addEventListener('click', () => {
-            // Immediately hide popup
             popupOverlay.style.display = 'none';
-            
-            // Start video playing (unmuted)
             video.muted = false;
             video.currentTime = 0;
-            
-            // Play video without waiting for promise
-            video.play().catch(error => {
-                console.log('Video play failed:', error);
-            });
+            video.play().catch(console.error);
         });
 
-        // Fallback: if user clicks outside popup content, close it
+        // Close popup if user clicks outside content
         popupOverlay.addEventListener('click', (e) => {
             if (e.target === popupOverlay) {
                 popupOverlay.style.display = 'none';
-                // Start video muted as fallback
                 video.muted = true;
                 video.play().catch(console.error);
             }
         });
 
-        // Also allow video click to unmute
+        // Click on video to unmute
         video.addEventListener('click', () => {
             if (video.muted) {
                 video.muted = false;
                 video.play().catch(console.error);
             }
         });
-    </script>
+
+        // ====== FIXED PLAY/PAUSE BUTTON ======
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const icon = pauseBtn.querySelector('i');
+                
+                if (video.paused) {
+                    video.play();
+                    icon.classList.replace('fa-play', 'fa-pause');
+                } else {
+                    video.pause();
+                    icon.classList.replace('fa-pause', 'fa-play');
+                }
+            });
+
+            // Update button icon based on video state
+            video.addEventListener('play', () => {
+                const icon = pauseBtn.querySelector('i');
+                icon.classList.replace('fa-play', 'fa-pause');
+            });
+
+            video.addEventListener('pause', () => {
+                const icon = pauseBtn.querySelector('i');
+                icon.classList.replace('fa-pause', 'fa-play');
+            });
+        }
+</script>
+
 </body>
 </html>
