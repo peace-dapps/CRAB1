@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naked Crab Club ($CRAB) - The Original Furie Meme Coin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -80,12 +80,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: 'Bangers', cursive;
+            font-family: 'Luckiest Guy', cursive;
             font-size: 1.8rem;
             background: var(--heading-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 1px;
         }
 
         .logo-img {
@@ -185,7 +186,7 @@
         }
 
         .hero-title {
-            font-family: 'Bangers', cursive;
+            font-family: 'Luckiest Guy', cursive;
             font-size: clamp(2.5rem, 6vw, 5rem);
             letter-spacing: 2px;
             background: var(--heading-gradient);
@@ -285,7 +286,7 @@
         }
 
         .section-title {
-            font-family: 'Bangers', cursive;
+            font-family: 'Luckiest Guy', cursive;
             font-size: clamp(2rem, 4vw, 3rem);
             letter-spacing: 1px;
             background: var(--heading-gradient);
@@ -374,10 +375,11 @@
         }
 
         .phase-number {
-            font-family: 'Bangers', cursive;
+            font-family: 'Luckiest Guy', cursive;
             font-size: 1.5rem;
             color: var(--accent);
             margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
         /* Mission */
@@ -464,45 +466,75 @@
             flex-wrap: wrap;
         }
 
-        /* Gallery Section */
-        .gallery-section {
-            padding: 60px 20px;
-            text-align: center;
-        }
+/* Infinite loop scrolling gallery */
+.gallery-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-        .gallery-container {
-            position: relative;
-            max-width: 100%;
-            margin: 0 auto;
-        }
+.gallery-scroll {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    animation: infiniteScroll 40s linear infinite;
+    width: max-content;
+}
 
-        .gallery-scroll {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            gap: 20px;
-            padding: 20px 0;
-            scrollbar-width: none;
-        }
+.gallery-scroll:hover {
+    animation-play-state: paused;
+}
 
-        .gallery-scroll::-webkit-scrollbar {
-            display: none;
-        }
+/* Duplicate the images for seamless loop */
+.gallery-scroll {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    animation: infiniteScroll 40s linear infinite;
+    width: max-content;
+}
 
-        .gallery-item {
-            flex: 0 0 auto;
-            width: 250px;
-            height: 200px;
-            border-radius: 8px;
-            border: 2px solid var(--accent);
-            object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
+/* Create the infinite scroll effect */
+@keyframes infiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 9 - 20px * 8));
+    }
+}
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
+.gallery-item {
+    flex: 0 0 auto;
+    width: 300px;
+    height: 350px;
+    border-radius: 8px;
+    border: 2px solid var(--accent);
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .gallery-item {
+        width: 300px;
+        height: 350px;
+    }
+    
+    @keyframes infiniteScroll {
+        0% {
+            transform: translateX(0);
         }
+        100% {
+            transform: translateX(calc(-200px * 9 - 20px * 8));
+        }
+    }
+}
 
         /* Disclaimer */
         .disclaimer {
@@ -548,12 +580,14 @@
         }
 
         .footer-logo p {
+            font-family: 'Luckiest Guy', cursive;
             font-weight: 700;
             font-size: 1.1rem;
             background: var(--heading-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: 1px;
         }
 
         .footer-links,
@@ -638,7 +672,7 @@
         }
 
         .popup-content h3 {
-            font-family: 'Bangers', cursive;
+            font-family: 'Luckiest Guy', cursive;
             font-size: 2rem;
             background: var(--heading-gradient);
             -webkit-background-clip: text;
@@ -795,7 +829,7 @@
                 </h3>
                 
                 <p style="font-size: 1.2rem; margin-bottom: 25px;">
-                    <strong>$CRAB</strong> represents the forgotten cornerstone of the Furie universe—an original Matt Furie creation that chronologically predates the iconic $PEPE artwork itself. While the world celebrated the frog, the true progenitor remained hidden in the archives, waiting for its moment.
+                    <strong>$CRAB</strong> represents the forgotten cornerstone of the Furie universe, an original Matt Furie creation that chronologically predates the iconic $PEPE artwork itself. While the world celebrated the frog, the true progenitor remained hidden in the archives, waiting for its moment.
                 </p>
                 
                 <p style="font-size: 1.2rem; margin-bottom: 25px;">
@@ -807,7 +841,7 @@
                 </p>
                 
                 <p style="font-size: 1.2rem; margin-bottom: 40px; font-style: italic; color: var(--accent); text-align: center;">
-                    $CRAB transcends meme status—it represents the resurrection of authentic digital folklore and the reclamation of internet history.
+                    $CRAB transcends meme status, it represents the resurrection of authentic digital folklore and the reclamation of internet history.
                 </p>
 
                 <div style="text-align: center; margin: 40px 0;">
@@ -843,7 +877,7 @@
                     
                     <div style="border-top: 1px solid rgba(0, 207, 255, 0.3); padding-top: 25px;">
                         <p style="font-style: italic; color: rgba(244, 238, 220, 0.8); font-size: 1rem;">
-                            "The resurgence of $CRAB represents more than a market movement—it's a cultural correction, restoring the proper historical narrative of digital art evolution."
+                            "The resurgence of $CRAB represents more than a market movement, it's a cultural correction, restoring the proper historical narrative of digital art evolution."
                         </p>
                     </div>
                 </div>
@@ -956,7 +990,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <a href="roadmap.html" class="btn btn-primary">View Full Roadmap</a>
+                <a href="http://crab-roadmap.vercel.app" class="btn btn-primary">View Full Roadmap</a>
             </div>
         </div>
     </section>
@@ -976,7 +1010,7 @@
         <div class="container">
             <h2 class="section-title">Join the Community</h2>
             <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem;">
-                Be part of the $CRAB movement — where culture meets innovation:
+                Be part of the $CRAB movement; where culture meets innovation:
             </p>
             <div class="community-grid">
                 <a class="community-card" href="https://t.me/THENAKEDCRABMAN" target="_blank" rel="noopener noreferrer">
@@ -1013,21 +1047,25 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section">
-        <div class="container">
-            <h2 class="section-title">Gallery</h2>
-            <div class="gallery-container">
-                <div class="gallery-scroll">
-                    <img src="https://raw.githubusercontent.com/peace-dapps/CRABPNG/refs/heads/main/20251101_183837.jpg" alt="Gallery Image 1" class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/peace-dapps/CRABPNG/refs/heads/main/20251102_001755.jpg" alt="Gallery Image 2" class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/peace-dapps/CRABPNG/refs/heads/main/20251102_154721.jpg" alt="Gallery Image 3" class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/peace-dapps/CRABPNG/refs/heads/main/20251102_154729.jpg" alt="Gallery Image 4" class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/peace-dapps/CRABPNG/refs/heads/main/20251102_154827.jpg" alt="Gallery Image 5" class="gallery-item">
-                </div>
+<!-- Gallery Section -->
+<section class="gallery-section">
+    <div class="container">
+        <h2 class="section-title">Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-scroll">
+                <img src="https://i.supaimg.com/195d9be6-9d07-402e-a2ad-ffe2f75bc15c.jpg" alt="Crab Art 1" class="gallery-item">
+                <img src="https://i.supaimg.com/dedaf60d-44c5-4f77-94a3-42a12b429fda.jpg" alt="Crab Art 2" class="gallery-item">
+                <img src="https://i.supaimg.com/f266a4ec-d260-4806-8163-48db832b262f.jpg" alt="Crab Art 3" class="gallery-item">
+                <img src="https://i.supaimg.com/c1047b66-08ec-479f-b869-b5af2916a389.jpg" alt="Crab Art 4" class="gallery-item">
+                <img src="https://i.supaimg.com/1c74867d-a060-4af6-b2f9-868ade6f333b.jpg" alt="Crab Art 5" class="gallery-item">
+                <img src="https://i.supaimg.com/e26535f6-32f7-45bb-8546-ce98c4bcb6f7.jpg" alt="Crab Art 6" class="gallery-item">
+                <img src="https://i.supaimg.com/da8f277b-90cc-4ec8-8ee6-a61cc3367437.jpg" alt="Crab Art 7" class="gallery-item">
+                <img src="https://i.supaimg.com/b1f78c99-d919-49f6-a7d9-2bca2180435c.jpg" alt="Crab Art 8" class="gallery-item">
+                <img src="https://i.supaimg.com/0ced4cb6-7882-42f4-bd91-6531111d4999.jpg" alt="Crab Art 9" class="gallery-item">
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Disclaimer -->
     <section class="section">
